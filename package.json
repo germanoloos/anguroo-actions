@@ -1,0 +1,19 @@
+{
+  "name": "anguroo-actions",
+  "version": "1.0.0",
+  "description": "Github action for project Anguroo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/germanoloos/anguroo-actions.git"
+  },
+  "author": "Germano Loos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/germanoloos/anguroo-actions/issues"
+  },
+  "homepage": "https://github.com/germanoloos/anguroo-actions#readme"
+}
