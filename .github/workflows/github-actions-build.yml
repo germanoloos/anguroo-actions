@@ -21,6 +21,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
-      - run: npm i
-      - run: npm start
+      - run: npm i  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
+      - run: npm start  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
