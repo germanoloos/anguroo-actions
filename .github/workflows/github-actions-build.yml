@@ -5,6 +5,7 @@ on:
   
 jobs:
   Build-Stack-Actions:
+    if: ${{ github.event.client_payload.framework.name == 'angular' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,7 +22,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      if: ${{ github.event.client_payload.framework.name == 'angular' }}
       - run: npm i  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
       - run: npm start -- ${{ github.event.client_payload }} --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }} 
