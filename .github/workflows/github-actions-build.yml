@@ -18,6 +18,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: echo "${{ toJson(github.event.client_payload) }}" > ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}/payload.json
+      - run: echo "${{ github.event.client_payload }}" > ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}/payload.json
       - run: npm i  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
       - run: npm start --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
