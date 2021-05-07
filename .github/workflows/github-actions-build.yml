@@ -6,6 +6,7 @@ on:
 jobs:
   Build-Stack-Actions:
     
+    if: ${{ github.event.client_payload.framework.name == 'angular' }}
     runs-on: ubuntu-latest
     env:
       TEMPLATE_PATH: "./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}"
@@ -24,7 +25,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        if: ${{ github.event.client_payload.framework.name == 'angular' }}
         run: echo "${{ toJson(github.event.client_payload) }}" > ${{env.TEMPLATE_PATH}}/payload.json
         run: npm i  --prefix ${{env.TEMPLATE_PATH}}
         run: npm start --prefix ${{env.TEMPLATE_PATH}}
