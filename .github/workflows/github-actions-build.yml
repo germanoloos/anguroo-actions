@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: $TEMPLATE_PATH = "./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}"
+      - run: $TEMPLATE_PATH="./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}"
       - run: echo "${{ toJson(github.event.client_payload) }}" > $TEMPLATE_PATH/payload.json
       - run: npm i  --prefix $TEMPLATE_PATH
       - run: npm start --prefix $TEMPLATE_PATH
