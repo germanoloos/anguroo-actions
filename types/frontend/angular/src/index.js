@@ -1,4 +1,4 @@
-import { AngurooProject } from "./model/project.model";
+// import { AngurooProject } from "./model/project.model";
 
 // let payload = process.argv.splice(2)[0] as string;
 // if (payload && payload !== '') {
