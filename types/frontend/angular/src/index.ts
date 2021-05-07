@@ -1,6 +1,9 @@
 import { AngurooProject } from "./model/project.model";
 
-const payload = JSON.parse(process.argv.splice(2)[0]) as AngurooProject; 
+let payload = process.argv.splice(2)[0] as string;
+if (payload && payload !== '') {
+    const angurooProject = JSON.parse(payload) as AngurooProject; 
+    console.log(angurooProject.name);
+}
 
-console.log(payload.name);
 console.log("Angular Rules!");
