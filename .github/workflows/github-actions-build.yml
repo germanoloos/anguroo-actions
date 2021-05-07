@@ -5,26 +5,19 @@ on:
   
 jobs:
   Build-Stack-Actions:
-    
     if: ${{ github.event.client_payload.framework.name == 'angular' }}
     runs-on: ubuntu-latest
-    env:
-      TEMPLATE_PATH: "./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}"
     strategy:
       matrix:
         node-version: [15.x]
     steps:
       - name: Starting project creation
         uses: actions/checkout@v2
-      
-    steps:
-      - name: "Hello world when it's Monday"
-        run: echo "Hello $FIRST_NAME $middle_name $Last_Name, today is Monday!"
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        run: echo "${{ toJson(github.event.client_payload) }}" > ${{env.TEMPLATE_PATH}}/payload.json
-        run: npm i  --prefix ${{env.TEMPLATE_PATH}}
-        run: npm start --prefix ${{env.TEMPLATE_PATH}}
+      - run: echo "${{ toJson(github.event.client_payload) }}" > ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}/payload.json
+      - run: npm i  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
+      - run: npm start --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
