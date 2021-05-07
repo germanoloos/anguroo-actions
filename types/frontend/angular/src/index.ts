@@ -1,5 +1,5 @@
 import { AngurooProject } from "./model/project.model";
-import payload from "../payload.json";
+import payload = require("../payload.json");
 
 const angurooProject = payload as AngurooProject;
 console.log(angurooProject.name);
