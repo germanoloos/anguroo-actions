@@ -11,16 +11,14 @@ jobs:
       matrix:
         node-version: [15.x]
     steps:
-      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "Stating Angular app creation with Anguroo properties for ${{ github.event.client_payload.name }}"
-      
       - name: Starting project creation
         uses: actions/checkout@v2
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
-      - run: npm start --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }} -- ${{ fromJson(github.event.client_payload) }}
+      - run: $TEMPLATE_PATH = "./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}"
+      - run: echo "${{ toJson(github.event.client_payload) }}" > $TEMPLATE_PATH/payload.json
+      - run: npm i  --prefix $TEMPLATE_PATH
+      - run: npm start --prefix $TEMPLATE_PATH
