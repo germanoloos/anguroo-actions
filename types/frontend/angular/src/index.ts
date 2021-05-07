@@ -6,4 +6,4 @@ import { AngurooProject } from "./model/project.model";
 //     console.log(angurooProject.name);
 // }
 
-console.log("Angular Rules!");
+console.log(process.argv);
