@@ -18,9 +18,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: echo "${{ toJson(github.event.client_payload) }}" > ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}/payload.json
-      - run: npm i  --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
-      - run: npm start --prefix ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}
+      - run: npm i  --prefix ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.framework.name }}
+      - run: npm start --prefix ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.framework.name }} -- {{ $github.event.client_payload.base64 }}
 
       # - name: Archive production artifacts
       #   uses: actions/upload-artifact@v2
