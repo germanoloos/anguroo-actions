@@ -20,10 +20,3 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i  --prefix ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.framework.name }}
       - run: npm start --prefix ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.framework.name }} -- {{ $github.event.client_payload.base64 }}
-
-      # - name: Archive production artifacts
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: dist-without-markdown
-      #     path: |
-      #       ./types/${{ github.event.client_payload.type }}/${{ github.event.client_payload.framework.name }}/payload.json
