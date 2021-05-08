@@ -5,7 +5,7 @@ on:
   
 jobs:
   Build-Stack-Actions:
-    if: ${{ github.event.client_payload.framework.name == 'angular' }}
+    if: ${{ github.event.client_payload.payload.framework.name == 'angular' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
