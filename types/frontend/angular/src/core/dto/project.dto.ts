@@ -1,5 +1,5 @@
 
-export interface AngurooProject {
+export interface Project {
     id: string;
     name: string;
     type: string;
