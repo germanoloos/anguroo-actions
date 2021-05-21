@@ -9,7 +9,7 @@ export class AngularProvider implements FramewordProvider {
     }
 
     addCli(): string {
-        return `npm i -g @angular/cli`;;
+        return `npm i @angular/cli`;;
     }
 
     addUiComponent(): string {
