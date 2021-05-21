@@ -14,7 +14,7 @@ export class UnixTerminal implements TerminalCommand {
                 if (isWin) {
                     cmdTerminal = spawn('cmd', ['/c', command]);
                 } else {
-                    cmdTerminal = spawn(command);
+                    cmdTerminal = spawn(command, ['-lh', '/usr']);
                 }
 
                 cmdTerminal.stdout.on('data', (data: any) => {
