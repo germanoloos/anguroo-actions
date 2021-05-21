@@ -20,10 +20,3 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i  --prefix ./types/${{ github.event.client_payload.payload.type }}
       - run: npm start --prefix ./types/${{ github.event.client_payload.payload.type }} -- ${{ github.event.client_payload.base64 }}
-      
-      - name: Archive Release
-        uses: thedoctor0/zip-release@master
-        with:
-          files: ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.name }}
-          filename: '${{ github.event.client_payload.payload.name }}.zip'
-          exclusions: '/*node_modules/* .editorconfig'
