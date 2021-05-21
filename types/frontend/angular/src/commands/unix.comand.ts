@@ -16,7 +16,7 @@ export class UnixTerminal implements TerminalCommand {
 
 
             try {
-                const cmdTerminal = spawn(commands.join(' && '), { shell: true });
+                const cmdTerminal = spawn(commands.join(' && '), [], { shell: true });
 
                 cmdTerminal.stdout.on('data', (data: any) => {
                     logger.info(`${data}`, projectId);
