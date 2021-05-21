@@ -10,7 +10,7 @@ export class UnixTerminal implements TerminalCommand {
             try {
                 let isWin = process.platform === "win32";
                 let cmdTerminal;
-
+                console.log(command);
                 if (isWin) {
                     cmdTerminal = spawn('cmd', ['/c', command]);
                 } else {
