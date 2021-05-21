@@ -14,7 +14,7 @@ export class UnixTerminal implements TerminalCommand {
                 if (isWin) {
                     cmdTerminal = spawn('cmd', ['/c', command]);
                 } else {
-                    cmdTerminal = spawn('ls', [], {shell: true});
+                    cmdTerminal = spawn('npm', ['i', '-g', '@angular/cli'], {shell: true});
                 }
 
                 cmdTerminal.stdout.on('data', (data: any) => {
