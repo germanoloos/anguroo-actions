@@ -7,14 +7,6 @@ export class UnixTerminal implements TerminalCommand {
     run = (commands: string[], projectId: string, logger: LoggerRepository): Promise<string> => {
 
         return new Promise((resolve, reject) => {
-
-            var echo = spawn('echo', ['The quick brown fox\njumped over the lazy dog.']);
-            var grep = spawn('grep', ['brown']);
-
-            echo.stdout.pipe(grep.stdin);
-            grep.stdout.pipe(process.stdin);
-
-
             try {
                 commands.forEach((command) => {
                     console.log(command);
