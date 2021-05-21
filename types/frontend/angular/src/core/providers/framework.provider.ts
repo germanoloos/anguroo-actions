@@ -1,7 +1,8 @@
 import { Project } from "../dto/project.dto";
 
 export interface FramewordProvider {
+    getProject(): Project;
     addCli(): string;
-    addUiComponent(project: Project): string;
-    createNew(project: Project): string;
+    addUiComponent(): string;
+    createNew(): string;
 }

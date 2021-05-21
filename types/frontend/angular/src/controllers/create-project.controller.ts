@@ -15,10 +15,10 @@ export class CreateProjectController {
 		switch (project.framework.name) {
 			case ANGULAR_KEY:
 				try {
-					const provider = new AngularProvider();
-					await this._installCli.install(provider, project);
-					await this._createProject.create(provider, project);
-					await this._installUIComponents.install(provider, project);
+					const provider = new AngularProvider(project);
+					await this._installCli.install(provider);
+					await this._createProject.create(provider);
+					await this._installUIComponents.install(provider);
 				} catch (error) {
 					console.error(error);
 				}
