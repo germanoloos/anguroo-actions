@@ -16,8 +16,7 @@ export class UnixTerminal implements TerminalCommand {
 
 
             try {
-                const pipe = [] as ChildProcessWithoutNullStreams[];
-                commands.forEach((command, index) => {
+                commands.forEach((command) => {
                     console.log(command);
                     const commandSplit = command.split(' ');
                     const cmdTerminal = spawn(commandSplit[0], commandSplit.slice(1), { shell: true });
@@ -32,13 +31,7 @@ export class UnixTerminal implements TerminalCommand {
                     cmdTerminal.on('close', (code: any) => {
                         resolve(`child process exited with code ${code}`);
                     });
-                    pipe.push(cmdTerminal);
                 });
-                pipe.forEach((cmd, index) => {
-                    if (pipe[index + 1]) {
-                        cmd.stdout.pipe(pipe[index + 1].stdin);
-                    }
-                })
             } catch (e) {
                 reject(e)
             }
