@@ -18,7 +18,7 @@ export class CreateProjectController {
 					const provider = new AngularProvider(project);
 					await this._installCli.install(provider);
 					await this._createProject.create(provider);
-					await this._installUIComponents.install(provider);
+					// await this._installUIComponents.install(provider);
 				} catch (error) {
 					console.error(error);
 				}
