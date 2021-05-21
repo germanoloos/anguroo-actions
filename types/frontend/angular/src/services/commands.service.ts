@@ -1,6 +1,6 @@
 import { spawn } from "child_process";
 
-export const runCommand = (command: string, callback?: any) => {
+export const runCommand = (commands: string, callback?: any) => {
     let isWin = process.platform === "win32";
     let cmdTerminal;
 

@@ -5,23 +5,31 @@ export const ANGULAR_KEY = "angular";
 
 export class AngularProvider implements FramewordProvider {
 
-    constructor (private project: Project){
+    constructor(private project: Project) {
     }
 
-    addCli(): string {
-        return `npm i @angular/cli`;;
+    addCli(): string[] {
+        return [`npm i @angular/cli`];;
     }
 
-    addUiComponent(): string {
-        return `pushd ${this.project.name} && ng add @angular/material --skip-confirmation && popd`;
+    addUiComponent(): string[] {
+        // return [`pushd ${this.project.name} && ng add @angular/material --skip-confirmation && popd`];
+        return [
+            this.changeDirectory(),
+            `npm run ng -- add @angular/material --skip-confirmation`
+        ];
     }
 
-    createNew(): string {
-        return `npm run ng -- new ${this.project.name} --routing=true --skip-install --interactive=false --strict=true --style=${this.project.framework.props.stylesheet.toLowerCase()} --prefix=${this.project.framework.props.prefix}`;
+    createNew(): string[] {
+        return [`npm run ng -- new ${this.project.name} --routing=true --skip-install --interactive=false --strict=true --style=${this.project.framework.props.stylesheet.toLowerCase()} --prefix=${this.project.framework.props.prefix}`];
     }
 
-    getProject(): Project{
+    getProject(): Project {
         return this.project;
+    }
+
+    changeDirectory(): string {
+        return `cd ${this.project.name}`
     }
 
 }
