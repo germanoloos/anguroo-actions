@@ -17,10 +17,7 @@ export class AngularProvider implements FramewordProvider {
     }
 
     createNew(): string {
-        return `ng new ${this.project.name}
-        --routing=true --skip-install --interactive=false --strict=true
-        --style=${this.project.framework.props.stylesheet.toLowerCase()}
-        --prefix=${this.project.framework.props.prefix}`;
+        return `npm run ng -- new ${this.project.name} --routing=true --skip-install --interactive=false --strict=true --style=${this.project.framework.props.stylesheet.toLowerCase()} --prefix=${this.project.framework.props.prefix}`;
     }
 
     getProject(): Project{
