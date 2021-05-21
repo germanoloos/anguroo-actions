@@ -26,4 +26,8 @@ export class CreateProjectController {
 
 		}
 	}
+
+	parseAndCreate(params: any, body: Project) {
+		this.create(body);
+	}
 }

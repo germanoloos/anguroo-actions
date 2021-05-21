@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import defaultRoutes from './routes';
 
 const app: Application = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 666;
 
 app.use('/', defaultRoutes);
 

@@ -18,5 +18,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i  --prefix ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.framework.name }}
-      - run: npm start --prefix ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.framework.name }} -- ${{ github.event.client_payload.base64 }}
+      - run: npm i  --prefix ./types/${{ github.event.client_payload.payload.type }}
+      - run: npm start --prefix ./types/${{ github.event.client_payload.payload.type }} -- ${{ github.event.client_payload.base64 }}
