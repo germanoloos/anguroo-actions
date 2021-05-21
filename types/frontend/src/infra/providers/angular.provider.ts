@@ -29,7 +29,7 @@ export class AngularProvider implements FramewordProvider {
     }
 
     changeDirectory(): string {
-        return `cd ${this.project.name}`
+        return `pushd ${this.project.name}`
     }
 
 }
