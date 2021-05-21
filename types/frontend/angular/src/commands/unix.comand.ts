@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { ChildProcessWithoutNullStreams, spawn } from "child_process";
 import { LoggerRepository } from "../core/repositories/logger.repository";
 import { TerminalCommand } from "./terminal.command";
 
@@ -16,19 +16,29 @@ export class UnixTerminal implements TerminalCommand {
 
 
             try {
-                const cmdTerminal = spawn(commands.join(' && '), [], { shell: true });
+                const pipe = [] as ChildProcessWithoutNullStreams[];
+                commands.forEach((command, index) => {
+                    console.log(command);
+                    const commandSplit = command.split(' ');
+                    const cmdTerminal = spawn(commandSplit[0], commandSplit.slice(1), { shell: true });
+                    cmdTerminal.stdout.on('data', (data: any) => {
+                        logger.info(`${data}`, projectId);
+                    });
 
-                cmdTerminal.stdout.on('data', (data: any) => {
-                    logger.info(`${data}`, projectId);
-                });
+                    cmdTerminal.stderr.on('data', (data: any) => {
+                        logger.error(`${data}`, projectId);
+                    });
 
-                cmdTerminal.stderr.on('data', (data: any) => {
-                    logger.error(`${data}`, projectId);
+                    cmdTerminal.on('close', (code: any) => {
+                        resolve(`child process exited with code ${code}`);
+                    });
+                    pipe.push(cmdTerminal);
                 });
-
-                cmdTerminal.on('close', (code: any) => {
-                    resolve(`child process exited with code ${code}`);
-                });
+                pipe.forEach((cmd, index) => {
+                    if (pipe[index + 1]) {
+                        cmd.stdout.pipe(pipe[index + 1].stdin);
+                    }
+                })
             } catch (e) {
                 reject(e)
             }
