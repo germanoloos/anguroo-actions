@@ -1,4 +1,6 @@
+import { CopyTemplates } from '../core/usecases/copy-templates';
 import { CreateProject } from '../core/usecases/create-project';
+import { InstallBootstrap } from '../core/usecases/install-bootstrap';
 import { InstallCommandLineInterface } from '../core/usecases/install-cli';
 import { InstallUIComponents } from '../core/usecases/install-ui-components';
 import { RepositoryFactory } from './repository.factory';
@@ -12,5 +14,11 @@ export class UseCasesFactory {
 	}
 	static installUIComponents(): InstallUIComponents {
 		return new InstallUIComponents(RepositoryFactory.getTerminalRepository(), RepositoryFactory.getLoggerRepository());
+	}
+	static installBootstrap(): InstallBootstrap {
+		return new InstallBootstrap(RepositoryFactory.getTerminalRepository(), RepositoryFactory.getLoggerRepository(), RepositoryFactory.getFileManagerRepository());
+	}
+	static copyTemplates(): CopyTemplates {
+		return new CopyTemplates(RepositoryFactory.getFileManagerRepository());
 	}
 }

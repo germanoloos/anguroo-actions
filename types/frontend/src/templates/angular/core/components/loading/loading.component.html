@@ -1,0 +1,13 @@
+<div *ngIf="show" class="app-loading">
+  <div class="d-flex justify-content-center">
+    <p>{{ message }}</p>
+    <mat-spinner class="ml-2" diameter="20"></mat-spinner>
+  </div>
+  <div class="d-flex justify-content-center">
+    <img
+        src="/assets/images/header/icone_cinza.svg"
+        alt="logo inpacto"
+    />
+  </div>
+</div>
+<div *ngIf="show" id="cover-spin"></div>

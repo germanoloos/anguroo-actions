@@ -8,6 +8,8 @@ export class ControllerFactory {
 			UseCasesFactory.createProject(),
 			UseCasesFactory.installCli(),
 			UseCasesFactory.installUIComponents(),
+			UseCasesFactory.installBootstrap(),
+			UseCasesFactory.copyTemplates()
 		);
 	}
 
