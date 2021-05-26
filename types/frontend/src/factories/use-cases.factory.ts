@@ -1,3 +1,4 @@
+import { ArquiveProject } from '../core/usecases/arquive-project';
 import { CopyTemplates } from '../core/usecases/copy-templates';
 import { CreateProject } from '../core/usecases/create-project';
 import { InstallBootstrap } from '../core/usecases/install-bootstrap';
@@ -20,5 +21,8 @@ export class UseCasesFactory {
 	}
 	static copyTemplates(): CopyTemplates {
 		return new CopyTemplates(RepositoryFactory.getFileManagerRepository());
+	}
+	static arquiveProject(): ArquiveProject {
+		return new ArquiveProject(RepositoryFactory.getArquiveRepository(), RepositoryFactory.getLoggerRepository());
 	}
 }

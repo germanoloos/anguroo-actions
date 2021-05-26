@@ -1,4 +1,5 @@
-import { CreateProjectController } from '../controllers/create-project.controller';
+import { ArchiveProjectController } from '../controllers/archive.controller';
+import { CreateProjectController } from '../controllers/create.controller';
 import { UseCasesFactory } from './use-cases.factory';
 
 export class ControllerFactory {
@@ -9,7 +10,13 @@ export class ControllerFactory {
 			UseCasesFactory.installCli(),
 			UseCasesFactory.installUIComponents(),
 			UseCasesFactory.installBootstrap(),
-			UseCasesFactory.copyTemplates()
+			UseCasesFactory.copyTemplates(),
+		);
+	}
+
+	static arquiveProjectController(): ArchiveProjectController {
+		return new ArchiveProjectController(
+			UseCasesFactory.arquiveProject()
 		);
 	}
 

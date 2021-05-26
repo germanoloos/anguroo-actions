@@ -16,7 +16,9 @@ export class AngularProvider implements FramewordProvider {
     addUiComponent(): string[] {
         return [
             this.changeDirectory(),
-            `npm run ng -- add @angular/material --skip-confirmation`
+            'npm run ng -- add @angular/material --skip-confirmation',
+            'npm run ng -- g c template/header',
+            'npm run ng -- g c template/footer'
         ];
     }
 
@@ -35,7 +37,7 @@ export class AngularProvider implements FramewordProvider {
     addBootstrap(): string[] {
         return [
             this.changeDirectory(),
-            `npm install bootstrap --save`
+            'npm install bootstrap --save'
         ];
     }
 
@@ -45,7 +47,7 @@ export class AngularProvider implements FramewordProvider {
         const angularJsonFile = fileManagerRepository.getFile(angularJsonPath);
         angularJsonFile.projects[this.project.name].architect.build.options.styles.push('./node_modules/bootstrap/dist/css/bootstrap.min.css');
         fileManagerRepository.writeFile(angularJsonPath, JSON.stringify(angularJsonFile, null, 2));
-        
+
         const stylesPath = `${path.dirname(require.main?.filename)}/../${this.project.name}/src/styles.${this.project.framework.props.stylesheet.toLowerCase()}`;
         let styleFileContent = fileManagerRepository.readFile(stylesPath);
         styleFileContent = `@import '~bootstrap/dist/css/bootstrap.min.css';\n\n ${styleFileContent}`;
@@ -65,10 +67,10 @@ export class AngularProvider implements FramewordProvider {
         const angularJsonFile = fileManagerRepository.getFile(angularJsonPath);
         angularJsonFile.projects[this.project.name].architect.build.options.scripts.push('./node_modules/jquery/dist/jquery.min.js');
         fileManagerRepository.writeFile(angularJsonPath, JSON.stringify(angularJsonFile, null, 2));
-        
+
     }
-    
-    copyTemplates(fileManagerRepository: FileManagerRepository):void {
+
+    copyTemplates(fileManagerRepository: FileManagerRepository): void {
         const path = require('path');
         // Core folders
         let from = `${path.dirname(require.main?.filename)}/templates/angular/core`;
