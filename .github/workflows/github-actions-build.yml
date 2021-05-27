@@ -25,5 +25,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.client_payload.payload.name }}
-          path: ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.name }}
+          path: ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.name }}.zip
           retention-days: 1
