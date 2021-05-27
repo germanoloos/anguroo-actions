@@ -20,3 +20,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i  --prefix ./types/${{ github.event.client_payload.payload.type }}
       - run: npm start --prefix ./types/${{ github.event.client_payload.payload.type }} -- ${{ github.event.client_payload.base64 }}
+
+      - name: Archive build project
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.client_payload.payload.name }}
+          path: ./types/${{ github.event.client_payload.payload.type }}/${{ github.event.client_payload.payload.name }}
+          retention-days: 1
