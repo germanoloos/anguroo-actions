@@ -18,7 +18,8 @@ export class AngularProvider implements FramewordProvider {
             this.changeDirectory(),
             'npm run ng -- add @angular/material --skip-confirmation',
             'npm run ng -- g c template/header',
-            'npm run ng -- g c template/footer'
+            'npm run ng -- g c template/footer',
+            'npm i codelyzer --save'
         ];
     }
 
@@ -75,6 +76,10 @@ export class AngularProvider implements FramewordProvider {
         // Core folders
         let from = `${path.dirname(require.main?.filename)}/templates/angular/core`;
         let to = `${path.dirname(require.main?.filename)}/../${this.project.name}/src/app/core`;
+        fileManagerRepository.copyDir(from, to);
+
+        from = `${path.dirname(require.main?.filename)}/templates/angular/tslint.json`;
+        to = `${path.dirname(require.main?.filename)}/../${this.project.name}/tslint.json`;
         fileManagerRepository.copyDir(from, to);
 
         // Angular Material Modules Imports
