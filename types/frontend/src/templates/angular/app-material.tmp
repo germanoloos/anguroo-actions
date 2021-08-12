@@ -27,12 +27,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @NgModule({
    imports: [
@@ -117,11 +118,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
          provide: MAT_RADIO_DEFAULT_OPTIONS,
          useValue: { color: 'primary' },
       },
-      { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
       {
          provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
          useValue: { color: 'primary' },
-      }
+      },
+      {
+         provide: DateAdapter,
+         useClass: MomentDateAdapter,
+         deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+       },
+       { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+       {
+         provide: MAT_DATE_FORMATS,
+         useValue: {
+           parse: {
+             dateInput: 'L',
+           },
+           display: {
+             dateInput: 'L',
+             monthYearLabel: 'MMM YYYY',
+             dateA11yLabel: 'LLLL',
+             monthYearA11yLabel: 'MMMM YYYY',
+           },
+         },
+       },
    ]
 })
 

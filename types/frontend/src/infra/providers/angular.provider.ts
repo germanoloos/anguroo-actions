@@ -17,9 +17,12 @@ export class AngularProvider implements FramewordProvider {
         return [
             this.changeDirectory(),
             'npm run ng -- add @angular/material --skip-confirmation',
+            'npm run ng -- add @angular/material-moment-adapter',
             'npm run ng -- g c template/header',
             'npm run ng -- g c template/footer',
-            'npm i codelyzer --save'
+            'npm i codelyzer --save',
+            'npm i moment --save',
+            'npm i @rxweb/types --save',
         ];
     }
 
