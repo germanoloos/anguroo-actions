@@ -23,6 +23,7 @@ export class AngularProvider implements FramewordProvider {
             'npm i moment --save',
             'npm i @rxweb/types --save',
             'npm i @angular/material-moment-adapter --save',
+            'npm audit fix',
         ];
     }
 
